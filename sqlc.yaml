@@ -1,0 +1,11 @@
+version: 2
+sql:
+  - schema: "sql/schema"
+    # location where the RAW sql queries will live
+    queries: "sql/queries"
+    engine: "postgresql"
+    gen:
+      # Specifies the language for code generation (Go in this case)
+      go:
+        # location where we will be storing our queries
+        out: "internal/database"
