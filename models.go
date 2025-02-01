@@ -12,7 +12,8 @@ type User struct {
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 
-	Name string `json:"name"`
+	Name   string `json:"name"`
+	APIKey string `json:"api_key"`
 }
 
 // Send the validated user, in order to control what is transferred over the network
@@ -22,5 +23,6 @@ func databaseUserToUser(dbUser database.User) User {
 		CreatedAt: dbUser.CreatedAt,
 		UpdatedAt: dbUser.UpdatedAt,
 		Name:      dbUser.Name,
+		APIKey:    dbUser.ApiKey,
 	}
 }

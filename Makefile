@@ -16,3 +16,6 @@ migrate:
 
 sqlc_gen:
 	sqlc generate
+
+create_user:
+	 curl -X POST -H 'Content-Type: application/json'  -d '{"name": "hari"}' POST http://localhost:8000/v1/users
