@@ -33,5 +33,5 @@ func (apiCfg apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		respondWithError(w, 400, fmt.Sprintf("Couldn't create user: %v", err))
 	}
-	respondWithJson(w, 200, user)
+	respondWithJson(w, 200, databaseUserToUser(user))
 }

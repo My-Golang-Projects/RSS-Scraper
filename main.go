@@ -62,7 +62,7 @@ func main() {
 
 	log.Printf("Server starting on port %v", portString)
 	// This is blocking and only returns if error happens
-	err := srv.ListenAndServe()
+	err = srv.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
 	}
