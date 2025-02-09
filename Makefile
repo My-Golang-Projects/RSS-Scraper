@@ -19,8 +19,8 @@ sqlc_gen:
 	sqlc generate
 
 create_user:
-	 curl -X POST -H 'Content-Type: application/json'  -d '{"name": "hari"}' POST http://localhost:8000/v1/users
+	 curl -X POST -H 'Content-Type: application/json'  -d '{"name": "hari"}' http://localhost:8000/v1/users
 
 # make API_KEY=<API_KEY>
 create_feed:
-	curl -X POST -H 'Content-Type: application/json' -H 'Authorization: ApiKey ${API_KEY}' -d '{"name": "Someone Blog", "url":"https://google.com"}' POST http://localhost:8000/v1/feeds
+	curl -X POST -H 'Content-Type: application/json' -H 'Authorization: ApiKey ${API_KEY}' -d '{"name": "Someone Blog", "url":"https://google.com"}'  http://localhost:8000/v1/feeds
