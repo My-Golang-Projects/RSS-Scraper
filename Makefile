@@ -24,3 +24,6 @@ create_user:
 # make API_KEY=<API_KEY>
 create_feed:
 	curl -X POST -H 'Content-Type: application/json' -H 'Authorization: ApiKey ${API_KEY}' -d '{"name": "Someone Blog", "url":"https://google.com"}'  http://localhost:8000/v1/feeds
+
+get_feeds:
+	curl http://localhost:8000/v1/feeds
