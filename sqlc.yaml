@@ -1,9 +1,10 @@
-version: 2
+version: "2"
 sql:
   - schema: "sql/schema"
     # location where the RAW sql queries will live
     queries: "sql/queries"
     engine: "postgresql"
+    strict_order_by: false
     gen:
       # Specifies the language for code generation (Go in this case)
       go:
