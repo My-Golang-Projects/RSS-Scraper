@@ -11,9 +11,13 @@ install_dot_env:
 db:
 	docker run --name  rssagg -e POSTGRES_USER=pokemon -e POSTGRES_PASSWORD=secret123 -e POSTGRES_DB=rssagg -p 5432:5432 -d -d postgres:latest
 
-migrate:
+up:
 	cd sql/schema && \
 	goose postgres postgres://pokemon:secret123@localhost:5432/rssagg up
+
+down:
+	cd sql/schema && \
+	goose postgres postgres://pokemon:secret123@localhost:5432/rssagg down
 
 sqlc_gen:
 	sqlc generate
