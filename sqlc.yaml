@@ -4,6 +4,7 @@ sql:
     # location where the RAW sql queries will live
     queries: "sql/queries"
     engine: "postgresql"
+    # schema_search_path: ["public"]
     strict_order_by: false
     gen:
       # Specifies the language for code generation (Go in this case)

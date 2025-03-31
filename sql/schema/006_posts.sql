@@ -1,4 +1,4 @@
--- +goose up
+-- +goose Up
 CREATE TABLE posts (
   id UUID PRIMARY KEY,
   created_at TIMESTAMP NOT NULL,
@@ -10,5 +10,5 @@ CREATE TABLE posts (
   feed_id UUID NOT NULL REFERENCES feeds (id) ON DELETE CASCADE
 );
 
--- +goose down
+-- +goose Down
 DROP TABLE posts;
