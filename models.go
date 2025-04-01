@@ -34,6 +34,18 @@ type FeedFollow struct {
 	FeedID    uuid.UUID `json:"feed_id"`
 }
 
+type Post struct {
+	ID        uuid.UUID `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	Title     string    `json:"title"`
+	// if the string is nil then it'll marshall it into null (in JSON)
+	Description *string   `json:"description"`
+	PublishedAt time.Time `json:"published_at"`
+	Url         string    `json:"url"`
+	FeedID      uuid.UUID `json:"feed_id"`
+}
+
 // Send the validated user, in order to control what is transferred over the network
 func databaseUserToUser(dbUser database.User) User {
 	return User{
@@ -81,4 +93,8 @@ func databaseFeedFollowsToFeedFollows(dbFeedFollows []database.FeedFollow) []Fee
 	}
 
 	return feedFollows
+}
+
+func databasePostToPost(dbPost database.Post) Post {
+	
 }

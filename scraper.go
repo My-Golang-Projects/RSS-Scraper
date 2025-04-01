@@ -4,11 +4,12 @@ import (
 	"context"
 	"database/sql"
 	"log"
+	"strings"
 	"sync"
 	"time"
 
 	"github.com/My-Golang-Projects/RSS-Scraper/internal/database"
-	"github.com/gogo/protobuf/test/data"
+	"github.com/google/uuid"
 )
 
 // this is a long running job so this will run in background
@@ -60,22 +61,27 @@ func scrapeFeed(db *database.Queries, wg *sync.WaitGroup, feed database.Feed) {
 
 		pubAt, err := time.Parse(time.RFC1123Z, item.PubDate)
 		if err != nil {
-			log.Println("Couldn't parse date %v with err %v", item.PubDate, err)
+			log.Printf("Couldn't parse date %v with err %v", item.PubDate, err)
 			continue
 		}
 		_, err = db.CreatePost(
 			context.Background(),
-			 database.CreatePostParams{
-					ID: uuid.New(),
-					CreatedAt: time.Now().UTC(),
-					UpdatedAt: time.Now().UTC(),
-					Title: item.Title,
-					Description: description,
-					PublishedAt: pubAt,
-					Url: item.Link,
-					FeedID: feed.ID,
-			}
+			database.CreatePostParams{
+				ID:          uuid.New(),
+				CreatedAt:   time.Now().UTC(),
+				UpdatedAt:   time.Now().UTC(),
+				Title:       item.Title,
+				Description: description,
+				PublishedAt: pubAt,
+				Url:         item.Link,
+				FeedID:      feed.ID},
 		)
+		if err != nil {
+			if strings.Contains(err.Error(), "duplicate key") {
+				continue
+			}
+			log.Println("failed to create post: ", err)
+		}
 		log.Println("Found post", item.Title, "on feed", feed.Name)
 	}
 
