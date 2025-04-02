@@ -50,4 +50,6 @@ func (apiCfg apiConfig) handlerGetPostsForUser(w http.ResponseWriter, r *http.Re
 		respondWithError(w, 400, fmt.Sprintf("Couldn't get posts: %v", err))
 		return
 	}
+
+	respondWithJson(w, 200, databasePostsToPosts(posts))
 }
